@@ -1,0 +1,15 @@
+{% extends 'admin/adbase.html' %}
+
+
+{% block content %}
+    <h1>Editer une categorie </h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=32) }}
+        </p>
+       
+        <button class="btn btn-primary">Créer une categorie</button>
+    </form>
+{% endblock %}

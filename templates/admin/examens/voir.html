@@ -1,0 +1,89 @@
+
+
+{% extends 'admin/adbase.html' %}
+        <!-- Begin Page Content -->
+
+        {% block style %}
+        <style>
+         .list-group-item span{
+            color: red;
+            float: right;
+          }
+        </style>
+        {% endblock %}
+          
+          {% block content %}
+
+          
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Liste d'examens</h1>
+         
+
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0 font-weight-bold text-primary">Vue sur le test  de {{examen.user.username}}</h4>
+     
+
+
+
+
+              <div class="card" style="width: 50rem;">
+                <div class="card-body">
+                  <h5 class="font-weight-bold mb-3">{{examen.user.username}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+
+                  <li class="list-group-item">Age : <span> {{examen.age}} </span> </li>
+                  <li class="list-group-item">Sexe : <span> {{examen.sexe}} </span> </li>
+                  <li class="list-group-item">Avez vous eu une toux récente ?    : <span>{{examen.touxrecente}}</span> </li>
+                  <li class="list-group-item">Avez vous eu des difficultés à respirer ?    : <span>{{examen.respirer}}</span> </li>
+
+                  <li class="list-group-item">Avez vous eu une sensation de fièvre ?    : <span>{{examen.fievreSensation}}</span> </li>
+                  <li class="list-group-item">Avez vous eu de la fièvre ?    : <span>{{examen.fievre}}</span> </li>
+                  <li class="list-group-item">Avez vous eu un mal de gorge ?    : <span> {{examen.malGorge}}</span> </li>
+
+                  <li class="list-group-item">Avez vous eu une impossibilité de manger ou boire depuis 24 heures ou plus ?    : <span>{{examen.impossibiliteManger}}</span> </li>
+
+                  <li class="list-group-item">Avez-vous des courbatures en dehors des douleurs musculaires liées à une activité sportive intense ?    : <span>{{examen.courbatures}}</span> </li>
+                  <li class="list-group-item">Avez-vous perdu l’odorat de manière brutale sans rapport avec le nez bouché ?    : <span>{{examen.perteOrdorat}}</span> </li>
+                  <li class="list-group-item">Avez-vous la diarrhée ?    : <span>{{examen.diarrhee}}</span> </li>
+                  <li class="list-group-item">Avez-vous une autre maladie connue ?    : <span>{{examen.maladieConnu}}</span> </li>
+
+
+                </ul>
+                <div class="card-body">
+                  <a href="#!" class="card-link">Card link</a>
+                  <a href="#!" class="card-link">Another link</a>
+                </div>
+            </div>
+
+
+
+       
+          </div>
+
+
+
+
+          {% endblock %}
+
+        <!-- /.container-fluid -->
+
+     
+
+     {% block js %}
+
+     {{super()}}
+
+        <!-- Page level plugins -->
+        <script src="{{url_for('static',filename='admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{url_for('static',filename='admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{url_for('static',filename='admin/js/demo/datatables-demo.js')}}"></script>
+
+
+     {% endblock %}

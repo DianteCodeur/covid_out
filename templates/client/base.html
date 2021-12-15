@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static',filename='telinput/build/css/intlTelInput.css')}}" >
+<link rel="stylesheet" href="{{ url_for('static',filename='telinput/build/css/demo.css')}}" >
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+{% block statsjs %}
+{% endblock %}
+
+    <title>Hello, world!</title>
+  </head>
+
+  {% block style %}
+
+  {% endblock %}
+
+
+  <body  style="margin:0 3px;background: url('https://d.newsweek.com/en/full/1566957/coronavirus-covid-19.jpg?w=1600&h=900&q=88&f=40052b397555d257f5378fd19d90025a');">
+
+
+    {% include 'client/navbar.html' %}
+    <!-- Card -->
+
+    <!-- Button trigger modal -->
+
+
+ <!-- Card -->
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+
+
+
+<!-- Frame Modal Bottom -->
+<div  class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-frame modal-bottom" role="document">
+
+
+    <div style="background: center url('https://guineemail.com/wp-content/uploads/2020/02/nouveaux-cas-de-coronavirus-americain-dorigine-inconnue.jpg');" 
+     class="modal-content">
+      <div class="modal-body">
+    <h4 class="card-title text-center text-white"><a>INFORMATIONS SUR LE COVID</a> </h4> 
+<hr style="border-top: 2px solid white">
+
+        <div class="row d-flex justify-content-center align-items-center">
+
+    
+
+
+    <div class="row mx-auto">
+      <div class="col-md-3 ">
+        <button style="font-size: 16px;height: 70px;font-weight: bold;"  class="btn btn-secondary btn-block">
+          <i class="fas fa-dizzy"></i>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+           <span id="nb_confirme"></span> Cas confirmés 
+         </button>
+
+      </div>
+      <div class="col-md-3 ">
+        <button style="font-size: 16px;height: 70px;font-weight: bold;"  class="btn btn-success btn-block">
+          <i class="fas fa-briefcase-medical"></i>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        <span id="nb_gueris" ></span> Cas Guéris
+      </button>
+
+      </div>
+      <div class="col-md-3 ">
+        <button style="font-size: 16px;height: 70px;font-weight: bold;"  type="button" class="btn btn-deep-orange btn-block">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        <span id="nb_critiques" ></span> Cas  Critiques
+      </button>
+
+      </div>
+      <div class="col-md-3 ">
+        <button style="font-size: 16px;height: 70px;font-weight: bold;" class="btn btn-danger btn-block">
+          <i class="fas fa-skull-crossbones"></i>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        <span id="nb_morts"></span> Morts
+      </button>
+
+      </div>
+    </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Frame Modal Bottom -->
+
+
+
+
+    {% block js %}
+
+
+      <!-- JQuery -->
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
+
+
+<script src="{{ url_for('static',filename='telinput/build/js/intlTelInput.js')}}"></script>
+  <script>
+
+
+   
+
+$( document ).ready(function() {
+  
+  let div = document.querySelector('#infos_covid')
+    let nb_morts = document.querySelector('#nb_morts')
+    let nb_critiques = document.querySelector('#nb_critiques')
+    let nb_gueris = document.querySelector('#nb_gueris')
+    let nb_confirme = document.querySelector('#nb_confirme')
+    console.log(div)
+
+
+/*
+  function recupere_donne() {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://covid-19-data.p.rapidapi.com/totals?format=undefined",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
+        "x-rapidapi-key": "c25184148amshd4254b8a5df9ceep1fedcdjsn267ce47f527b"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log(response)
+      nb_morts.innerHTML  = response[0].deaths
+    nb_critiques.innerHTML  =response[0].critical
+    nb_gueris.innerHTML  = response[0].deaths
+    nb_confirme.innerHTML  =response[0].recovered
+    });
+  }
+  */
+
+  function recupere_donne() {
+    // body...
+    nb_morts.innerHTML  = "63902"//response[0].deaths
+    nb_critiques.innerHTML  ="41857"//response[0].critical
+    nb_gueris.innerHTML  = "243872"//response[0].deaths
+    nb_confirme.innerHTML  ="1182486"//response[0].recovered
+  }
+
+
+  console.log("Recuperation de donnée")
+
+//recupere_donne()
+  setTimeout(()=>{
+    console.log("BOUUUUUUUMMM");
+
+
+    $('.spinner-grow').remove();
+
+
+
+  recupere_donne()
+
+  },4000)
+
+
+
+    console.log( "ready!" );
+});
+
+   
+
+
+
+
+
+
+
+
+
+
+ var wtf_phone_field = document.getElementById('telephone');
+    wtf_phone_field.style.position = 'absolute';
+    wtf_phone_field.style.top = '-9999px';
+    wtf_phone_field.style.left = '-9999px';
+    wtf_phone_field.parentElement.insertAdjacentHTML('beforeend', '<div><input type="tel" id="_phone"></div>');
+    var fancy_phone_field = document.getElementById('_phone');
+    var fancy_phone_iti = window.intlTelInput(fancy_phone_field, {
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.4/js/utils.js",
+    });
+    fancy_phone_iti.setNumber(wtf_phone_field.value);
+    fancy_phone_field.addEventListener('blur', function() {
+        wtf_phone_field.value = fancy_phone_iti.getNumber();
+    });
+
+
+
+
+
+
+  </script>
+    
+    {% endblock %}
+
+
+  </body>
+</html>

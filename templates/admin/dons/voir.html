@@ -1,0 +1,67 @@
+
+
+{% extends 'admin/adbase.html' %}
+        <!-- Begin Page Content -->
+          
+          {% block content %}
+
+          
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Liste de dons</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0 font-weight-bold text-primary">Vue sur le don  de {{don.user.username}}</h4>
+     
+
+
+
+
+              <div class="card" >
+                <div class="card-body">
+                  <h5 class="font-weight-bold mb-3">{{don.user.username}}  {{don.created_at}} </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+
+                  <li class="list-group-item">Descriptif : <span style="color: red;float: right;"> {{don.descriptif}} </span> </li>
+                
+
+
+                </ul>
+                <div class="card-body">
+                  <a href="#!" class="card-link">C</a>
+                  <a href="#!" class="card-link">A</a>
+                </div>
+            </div>
+
+
+
+       
+          </div>
+
+
+
+
+          {% endblock %}
+
+        <!-- /.container-fluid -->
+
+     
+
+     {% block js %}
+
+     {{super()}}
+
+        <!-- Page level plugins -->
+        <script src="{{url_for('static',filename='admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{url_for('static',filename='admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{url_for('static',filename='admin/js/demo/datatables-demo.js')}}"></script>
+
+
+     {% endblock %}

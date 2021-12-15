@@ -1,0 +1,109 @@
+
+
+{% extends 'admin/adbase.html' %}
+        <!-- Begin Page Content -->
+          
+          {% block content %}
+
+          
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Liste de catégories</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h4 class="m-0 font-weight-bold text-primary">Catégories</h4>
+          <button style="float: right;" class="btn btn-success">
+            <a href="{{url_for('new_categorie')}}" class="text-white">Créer une nouvelle catégorie</a></button>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="matable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for categorie in categories %}
+
+                        <tr>
+                          <td>{{categorie.description}}</td>
+
+                          <td class="text-center">
+                            <a href="{{url_for('edit_categorie',description=categorie.description)}}">Modifier</a>
+                            <a onclick="return confirm('supprimer ?')" href="{{url_for('remove_categorie',description=categorie.description)}}">Supprimer</a>
+                          </td>
+                        </tr>
+
+                      {% endfor %}
+
+                       
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+          {% endblock %}
+
+        <!-- /.container-fluid -->
+
+     
+
+     {% block js %}
+
+     {{super()}}
+
+        <!-- Page level plugins -->
+        <script src="{{url_for('static',filename='admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{url_for('static',filename='admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{url_for('static',filename='admin/js/demo/datatables-demo.js')}}"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+
+               $('#matable').DataTable( {
+            language: {
+                processing:     "Traitement en cours...",
+                search:         "Rechercher&nbsp;:",
+                lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+                info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix:    "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable:     "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first:      "Premier",
+                    previous:   "Pr&eacute;c&eacute;dent",
+                    next:       "Suivant",
+                    last:       "Dernier"
+                },
+                aria: {
+                    sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+        } );
+
+
+
+            } );
+      </script>
+
+     {% endblock %}

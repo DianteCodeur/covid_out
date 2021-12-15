@@ -1,0 +1,52 @@
+            {{ form.hidden_tag() }}
+
+ {% with messages = get_flashed_messages(category_filter=["info"]) %}
+              {% if messages %}
+              <div class="mt-2">
+                  {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                  {% endfor %}
+              </div>
+
+              {% endif %}
+      {% endwith %}
+
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+              {% if messages %}
+              <div class="mt-2">
+                  {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                  {% endfor %}
+              </div>
+
+              {% endif %}
+      {% endwith %}
+
+  <fieldset>
+
+
+
+                <h2 class="fs-title">Étape 1  : </h2>
+
+ {% for field in form if field.name != "csrf_token" %}
+
+          {{render_field(field, size=32,class_="d-flex justify-content-center btn" )}}<hr>  
+
+  {% endfor %}
+
+     <input type="submit" name="submit" class="submit action-button" value="Soumettre"/>
+  </fieldset>
+
+

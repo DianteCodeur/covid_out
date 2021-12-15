@@ -1,0 +1,90 @@
+            {{ form.hidden_tag() }}
+
+ {% with messages = get_flashed_messages(category_filter=["info"]) %}
+              {% if messages %}
+              <div class="mt-2">
+                  {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                  {% endfor %}
+              </div>
+
+              {% endif %}
+      {% endwith %}
+
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+              {% if messages %}
+              <div class="mt-2">
+                  {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                  {% endfor %}
+              </div>
+
+              {% endif %}
+      {% endwith %}
+
+  <fieldset>
+
+
+
+                <h2 class="fs-title">Étape 1  : </h2>
+
+
+            {{render_field(form.age, size=32,class_="text-center",step=1,min=10,max=100)}}
+  <hr>  
+
+  {{render_field(form.sexe, size=32,class_="d-flex justify-content-center" )}}
+  <hr>  
+
+{{render_field(form.touxrecente,size=32,class_="d-flex justify-content-center")}}
+  <hr>  
+
+{{render_field(form.respirer,size=32,class_="d-flex justify-content-center")}}
+  <hr>  
+
+
+      <input type="button" name="next" class="next action-button" value="Suivant"/>
+  </fieldset>
+
+
+
+
+            <fieldset>
+                <h2 class="fs-title">Étape 2  : </h2>
+
+{{render_field(form.fievreSensation,size=32,class_="d-flex justify-content-center")}}  <hr> 
+{{render_field(form.fievre,size=32,class_="d-flex justify-content-center")}}  <hr>
+{{render_field(form.malGorge,size=32,class_="d-flex justify-content-center")}}  <hr>
+{{render_field(form.impossibiliteManger,size=32,class_="d-flex justify-content-center")}}  <hr>
+
+
+
+
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Precedent"/>
+                <input type="button" name="next" class="next action-button" value="Suivant"/>
+            </fieldset>
+
+
+
+            <fieldset>
+                <h2 class="fs-title">Etape 3</h2>
+{{render_field(form.courbatures,size=32,class_="d-flex justify-content-center")}}  <hr>
+{{render_field(form.perteOrdorat,size=32,class_="d-flex justify-content-center")}}  <hr>
+{{render_field(form.diarrhee,size=32,class_="d-flex justify-content-center")}}  <hr>
+{{render_field(form.maladieConnu,size=32,class_="d-flex justify-content-center")}}  <hr>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Precedent"/>
+                <input type="submit" name="submit" class="submit action-button" value="Soumettre"/>
+            </fieldset>

@@ -1,0 +1,90 @@
+{% extends 'client/base.html' %}
+
+{% block style %}
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <div style="max-width: 500px" class="container mt-4">
+      
+<div class="card"> 
+  <div class="card-body px-lg-5 pt-0">
+
+<form class="text-center" action="" method="post" style="color: #757575;" action="#!">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>{{titre}}</strong>
+    </h5>
+            {{ form.hidden_tag() }}
+      {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <div class="mt-2">
+                  {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                  {% endfor %}
+              </div>
+
+              {% endif %}
+      {% endwith %}
+
+
+      {% for field in form if field.name != "csrf_token" %}
+          {% if field.errors %}
+
+                     <div class="alert alert-danger" role="alert">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+
+                      </div>
+
+          {% endif %}
+
+          <h5 style="font-style: italic;">{{field.label}} <i class="fas fa-pencil-alt prefix"></i></h5>
+
+                  <div class="md-form table-bordered">
+                      
+                      {{ field(class_="form-control md-textarea ",rows=3) }}
+
+                    
+                  </div>
+
+
+                  
+      {% endfor %}
+
+
+
+            <!-- Sign in button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Enregistrer</button>
+
+      
+      
+
+    </form>
+
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
